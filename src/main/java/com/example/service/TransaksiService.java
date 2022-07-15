@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+
 import com.example.model.Pelanggan;
 import com.example.model.Transaksi;
 import com.example.repository.PelangganRepository;
@@ -43,7 +44,7 @@ public class TransaksiService {
 					Transaksi transaction;
 					String namaFile = multipartfile.getOriginalFilename();
 					String rekPengirim = null;
-					Pelanggan pelanggan = new Pelanggan();
+					Pelanggan pelanggan = null;
 					XSSFSheet sheet = workBook.getSheetAt(0);
 					// looping through each row
 					for (int rowIndex = 0; rowIndex < getNumberOfNonEmptyCells(sheet, 0); rowIndex++) {
@@ -125,6 +126,11 @@ public class TransaksiService {
 			}
 		}
 		return numOfNonEmptyCells;
+	}
+	
+	public List<Transaksi> groupByNamaFile() {
+		return transaksiRepo.grupByNamaFile();
+		
 	}
 
 	public List<Transaksi> getAll() {

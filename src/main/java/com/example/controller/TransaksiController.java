@@ -37,4 +37,9 @@ public class TransaksiController {
 
 	}
 
+	@GetMapping("/grup")
+	public ResponseEntity<Transaksi> getAllByGrupNamaFile() {
+		return new ResponseEntity(transaksiService.groupByNamaFile(), HttpStatus.OK);
+	}
+
 }
